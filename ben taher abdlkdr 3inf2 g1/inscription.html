@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Inscription</legend>
+        <form action="">
+            <label>CIN:</label>
+            <input type="text" id="cin"><br><br>
+            <label>nom et pnom:</label>
+            <input type="text" id="nometpnom"><br><br>
+            <label>tel:</label>
+            <input type="tel" id="tel"><br><br>
+            <label>email:</label>
+            <input type="email" id="email"><br><br>
+            <label>date inscri:</label>
+            <input type="date" id="dateinscri" id="dateinscri"><br><br>
+            <label>mdp:</label>
+            <input type="password" id="mdp"><br><br>
+            <label>confirmation mdp:</label>
+            <input type="password" id="confirmation"><br><br>
+            <label>activité sportive:</label>
+            <select id="activite">
+                <option value="" disabled selected>choisir une activité</option>
+                <option value="football">football</option>
+                <option value="basketball">basketball</option>
+                <option value="handball">handball</option>
+                <option value="tennis">tennis</option>
+                <option value="natation">natation</option>
+            </select><br><br>
+
+
+        </form>
+    </fieldset>
+    <input type="submit" value="s'inscrire" onclick="verif()">
+    <input type="reset" value="annuler">
+</body>
+<script>
+    function date() {
+        let today = new Date();
+        let day = String(today.getDate());
+        let month = String(today.getMonth() + 1);
+        let year = today.getFullYear();
+        if (day < 10) {
+            day = "0" + day;
+        }
+        if (month < 10) {
+            month = "0" + month;
+        }
+        return year + '-' + month + '-' + day;
+    }
+    document.getElementById("dateinscri").value = date();
+
+    function verif() {
+        let cin = document.getElementById("cin").value;
+        if (cin.length != 8 || cin[0] > "1") {
+            alert("CIN invalide");
+            return;
+        }
+        let nometpnom = document.getElementById("nometpnom").value;
+        for (let i = 0; i < nometpnom.length; i++) {
+            if ((nometpnom[i] < 'a' || nometpnom[i] > 'z') && (nometpnom[i] < 'A' || nometpnom[i] > 'Z') && nometpnom[i] != ' ') {
+                alert("nom et prenom invalide");
+                return;
+            }
+        }
+        let tel = document.getElementById("tel").value;
+        if (tel.length != 12 || tel.substring(0, 4) != "+216") {
+            alert("numéro de téléphone invalide");
+            return;
+        }
+        let email = document.getElementById("email").value;
+        if (email.indexOf("@") == -1 || email.indexOf(".") == -1 || email.indexOf("@")>1 || email.indexOf (" ")!=-1) {
+            alert("email invalide");
+            return;
+        }
+        let mdp = document.getElementById("mdp").value;
+        for (let i = 0; i < mdp.length; i++) {
+            if ((mdp[i] < 'a' || mdp[i] > 'z') && (mdp[i] < 'A' || mdp[i] > 'Z') && mdp[i] != ' ' && (mdp[i] < '0' || mdp[i] > '9')) {
+                alert("mot de passe invalide");
+                return;
+            }
+        }
+        let activite = document.getElementById("activite").value;
+        if(activite.selectedIndex==0){
+            alert("choisir une activité");
+            return;
+        }
+        let confirmation = document.getElementById("confirmation").value;
+        if (mdp != confirmation) {
+            alert("les mots de passe ne correspondent pas");
+            return;
+        }
+        alert("inscription réussie");
+    }
+</script>
+
+</html>

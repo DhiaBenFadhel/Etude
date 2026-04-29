@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Payment</h1>
+    <fieldset>
+        <legend>abonnement</legend>
+        <label>age;</label>
+        <input type="radio" id="enfant" value="enfant">enfant
+        <input type="radio" id="adulte" value="adulte">adulte<br>
+        <label>abonnement</label>
+        <input type="radio" id="mois1" value="1 mois">1 mois
+        <input type="radio" id="mois3" value="3 mois">3 mois<br>
+        <label>activité sportive:</label>
+        <select id="activite">
+            <option value="" disabled selected>choisir une activité</option>
+            <option value="football">football</option>
+            <option value="basketball">basketball</option>
+            <option value="handball">handball</option>
+            <option value="tennis">tennis</option>
+            <option value="natation">natation</option>
+        </select><br><br>
+        <input type="submit" value="calculer" onclick="payer()"><br>
+        <label>net apayer:</label>
+        <input type="text" id="netapayer">
+    </fieldset>
+    <script>
+        function payer() {
+            let enfant = document.getElementById("enfant");
+            let adulte = document.getElementById("adulte");
+            let mois1 = document.getElementById("mois1");
+            let mois3 = document.getElementById("mois3");
+            let activite = document.getElementById("activite").value;
+            if (activite.selectedIndex == 0) {
+                alert("choisir une activité");
+                return;
+            }
+            if (enfant.checked == false && adulte.checked == false) {
+                alert("choisir un age");
+                return;
+            }
+            if (mois1.checked == false && mois3.checked == false) {
+                alert("choisir un abonnement");
+                return;
+            }
+            let prix = 0;
+            if (enfant.checked) {
+                if (mois1.checked) {
+                    if (activite == "football" || activite == "basketball" || activite == "handball") {
+                        prix = 15;
+                    } else if (activite == "tennis" || activite == "natation") {
+                        prix = 20;
+                    }
+                } else if (mois3.checked) {
+                    if (activite == "football" || activite == "basketball" || activite == "handball") {
+                        prix = 40;
+                    } else if (activite == "tennis" || activite == "natation") {
+                        prix = 50;
+                    }
+                }
+            } else if (adulte.checked) {
+                if (mois1.checked) {
+                    if (activite == "football" || activite == "basketball" || activite == "handball") {
+                        prix = 35;
+                    } else if (activite == "tennis" || activite == "natation") {
+                        prix = 50;
+                    }
+                } else if (mois3.checked) {
+                    if (activite == "football" || activite == "basketball" || activite == "handball") {
+                        prix = 100;
+                    } else if (activite == "tennis" || activite == "natation") {
+                        prix = 120;
+                    }
+                }
+            }
+            document.getElementById("netapayer").value = prix;
+        }
+    </script>
+</body>
+
+</html>

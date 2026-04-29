@@ -12,19 +12,16 @@
     <fieldset>
         <legend>abonnement</legend>
         <label>age;</label>
-        <input type="radio" id="enfant" value="enfant">enfant
-        <input type="radio" id="adulte" value="adulte">adulte<br>
+        <input type="radio"  name="age" id="enfant" value="enfant">enfant
+        <input type="radio"  name="age" id="adulte" value="adulte">adulte<br>
         <label>abonnement</label>
-        <input type="radio" id="mois1" value="1 mois">1 mois
-        <input type="radio" id="mois3" value="3 mois">3 mois<br>
+        <input type="radio"  name="abonnement" id="mois1" value="1 mois">1 mois
+        <input type="radio"  name="abonnement" id="mois3" value="3 mois">3 mois<br>
         <label>activité sportive:</label>
         <select id="activite">
             <option value="" disabled selected>choisir une activité</option>
-            <option value="football">football</option>
-            <option value="basketball">basketball</option>
-            <option value="handball">handball</option>
-            <option value="tennis">tennis</option>
-            <option value="natation">natation</option>
+            <option value="Gymnastique">Gymanstique</option>
+            <option value="Karate">Karate</option>
         </select><br><br>
         <input type="submit" value="calculer" onclick="payer()"><br>
         <label>net apayer:</label>
@@ -36,7 +33,7 @@
             let adulte = document.getElementById("adulte");
             let mois1 = document.getElementById("mois1");
             let mois3 = document.getElementById("mois3");
-            let activite = document.getElementById("activite").value;
+            let activite = document.getElementById("activite");
             if (activite.selectedIndex == 0) {
                 alert("choisir une activité");
                 return;
@@ -52,34 +49,34 @@
             let prix = 0;
             if (enfant.checked) {
                 if (mois1.checked) {
-                    if (activite == "football" || activite == "basketball" || activite == "handball") {
-                        prix = 15;
-                    } else if (activite == "tennis" || activite == "natation") {
-                        prix = 20;
+                    if (activite.value == "Gymnastique") {
+                        prix = 40;
+                    } else if (activite.value == "Karate") {
+                        prix = 30;
                     }
                 } else if (mois3.checked) {
-                    if (activite == "football" || activite == "basketball" || activite == "handball") {
-                        prix = 40;
-                    } else if (activite == "tennis" || activite == "natation") {
-                        prix = 50;
+                    if (activite.value == "Gymnastique") {
+                        prix = 100;
+                    } else if (activite.value == "Karate") {
+                        prix = 80;
                     }
                 }
             } else if (adulte.checked) {
                 if (mois1.checked) {
-                    if (activite == "football" || activite == "basketball" || activite == "handball") {
-                        prix = 35;
-                    } else if (activite == "tennis" || activite == "natation") {
-                        prix = 50;
+                    if (activite.value == "Gymnastique") {
+                        prix = 40;
+                    } else if (activite.value == "Karate") {
+                        prix = 40;
                     }
                 } else if (mois3.checked) {
-                    if (activite == "football" || activite == "basketball" || activite == "handball") {
+                    if (activite.value == "Gymnastique") {
+                        prix = 150;
+                    } else if (activite.value == "Karate") {
                         prix = 100;
-                    } else if (activite == "tennis" || activite == "natation") {
-                        prix = 120;
                     }
                 }
             }
-            document.getElementById("netapayer").value = prix;
+            document.getElementById("netapayer").value = prix +" DT";
         }
     </script>
 </body>
